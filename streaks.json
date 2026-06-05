@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Slay the Spire A20",
+    "type": "game",
+    "status": "in_progress",
+    "difficulty": 5,
+    "progress": "A10"
+  },
+  
+  {
+    "name": "Gym consistency streak",
+    "type": "fitness",
+    "status": "active",
+    "streak_days": 102
+  }
+]

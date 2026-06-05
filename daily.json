@@ -1,0 +1,16 @@
+{
+  "date": "2026-06-05",
+  "tasks": [
+    {
+      "name": "Coding practice",
+      "duration_minutes": 240,
+      "completed": false
+    },
+    
+    {
+      "name": "Gym",
+      "duration_minutes": 60,
+      "completed": false
+    }
+  ]
+}

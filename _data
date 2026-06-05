@@ -1,0 +1,37 @@
+import json
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+
+def load(file_name):
+    try:
+        with open(file_name, "r") as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"JSON error in {file_name}: {e}")
+        return None
+        
+
+profile = load("profile.json")
+daily = load("daily.json")
+streaks = load("streaks.json")
+
+def print_character(profile):
+    print("-=-Character-=-")
+    print(f"Name: {profile['name']}")
+    print(f"Level: {profile['level']}")
+
+def print_stats(profile):
+    print("\n-=-STATS-=-")
+    for stat, value in profile['stats'].items():
+        print (stat, ":", value)
+
+def print_tasks(daily):
+    print("\n-=-TASKS-=-")
+    for task in daily['tasks']:
+        status = "DONE" if task["completed"] else "NOT DONE"
+
+    
+print_character(profile)
+print_stats(profile)
+

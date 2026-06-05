@@ -1,0 +1,14 @@
+{
+  "name": "Lypeix",
+  "level": 1,
+  "stats": {
+    "strength": 10,
+    "stamina": 8,
+    "speed": 12,
+    "focus": 19
+  },
+  "resources": {
+    "hp": 100,
+    "energy": 100
+  }
+}
