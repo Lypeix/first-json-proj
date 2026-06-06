@@ -16,10 +16,6 @@ profile = load("profile.json")
 daily = load("daily.json")
 streaks = load("streaks.json")
 
-if not profile or not daily.json or not streaks.json:
-    print(f"Data load failed!")
-    exit()   
-
 def print_character(profile):
     print("\n-=-Main Character-=-")
     print(f"Name: {profile['name']}")
@@ -39,7 +35,7 @@ def print_tasks(daily):
 def print_streaks(streaks):
     print("\n-=-STREAKS-=-")
     for streak in streaks:
-        print(f"Name: {streak['name']} | {streak['streak_days']} days")
+        print(f"Name: {streak['name']}: {streak['streak_days']} days \nType: {streak['type']} \nStatus: {streak['status']} \nProgress {streak['progress']}")
 
 
 
