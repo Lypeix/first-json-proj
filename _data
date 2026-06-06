@@ -52,3 +52,70 @@ print_character(profile)
 print_stats(profile)
 print_tasks(daily)
 print_streaks(streaks)
+
+def action():
+    section = user_choice("""Which section would you like to update?
+1. Character
+2. Daily Challanges
+3. Streaks
+> """,
+["1", "2", "3"])
+    
+    if section == "1":
+        character = user_choice("Which value do you wish to update?"
+              "\n1. Name"
+              "\n2. Level"
+              "\n3. Stats"
+              "\n> ",
+              ["1", "2", "3"]
+              )
+
+        if character == "1":
+            name = input(f"Type in your new username!")
+            profile['name'] = name
+            print(f"Your name has been successfully changed to {profile['name']}!")
+
+        if character == "2":
+            level = input(f"Type in your new level!")
+            profile['level'] = int(level)
+            print(f"You are now at Lv. {profile['level']}!")
+
+        if character == "3":
+            stat = user_choice(
+        "Which statistic would you like to change?"
+        "\n1. Strength"
+        "\n2. Stamina"
+        "\n3. Speed"
+        "\n4. Focus"
+        "\n> ",
+        ["1", "2", "3", "4"]
+    )
+
+        stat_map = {
+        "1": "strength",
+        "2": "stamina",
+        "3": "speed",
+        "4": "focus"
+    }
+
+        stat_name = stat_map[stat]
+
+        new_stat = input(f"New value for {stat_name}: ")
+        profile["stats"][stat_name] = int(new_stat)
+
+        print(f"{stat_name} has been updated to {new_stat}!")
+
+
+
+def main():
+    answer = user_choice("Would you like to update anything?\n1. Yes \n2. No\n> ", ["1", "2"])
+
+
+    if answer == "2":
+        return False
+    else:
+        action()
+
+    return True
+
+main()
