@@ -4,20 +4,24 @@ import os
 BASE_DIR = os.path.dirname(__file__)
 
 def load(file_name):
+    path = os.path.join(BASE_DIR, file_name)
     try:
-        with open(file_name, "r") as f:
+        with open(path, "r") as f:
             return json.load(f)
     except json.JSONDecodeError as e:
         print(f"JSON error in {file_name}: {e}")
-        return None
-        
+        return None 
 
 profile = load("profile.json")
 daily = load("daily.json")
 streaks = load("streaks.json")
 
+if not profile or not daily.json or not streaks.json:
+    print(f"Data load failed!")
+    exit()   
+
 def print_character(profile):
-    print("-=-Character-=-")
+    print("\n-=-Main Character-=-")
     print(f"Name: {profile['name']}")
     print(f"Level: {profile['level']}")
 
@@ -30,8 +34,16 @@ def print_tasks(daily):
     print("\n-=-TASKS-=-")
     for task in daily['tasks']:
         status = "DONE" if task["completed"] else "NOT DONE"
-
+        print(f"- {task['name']}, {task['duration_minutes']} minutes, {status}")
     
+def print_streaks(streaks):
+    print("\n-=-STREAKS-=-")
+    for streak in streaks:
+        print(f"Name: {streak['name']} | {streak['streak_days']} days")
+
+
+
 print_character(profile)
 print_stats(profile)
-
+print_tasks(daily)
+print_streaks(streaks)
