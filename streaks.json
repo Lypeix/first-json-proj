@@ -1,10 +1,11 @@
 [
   {
-    "name": "Slay the Spire A20",
+    "name": "Slay the Spire Platinum journey streak",
     "type": "game",
     "status": "in_progress",
     "difficulty": 5,
-    "progress": "A10"
+    "progress": "A10",
+    "streak_days": 8
   },
   
   {
