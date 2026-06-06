@@ -2,7 +2,7 @@
   {
     "name": "Slay the Spire Platinum Journey Streak",
     "type": "Game",
-    "status": "in_progress",
+    "status": "In progress",
     "difficulty": 5,
     "progress": "A10",
     "streak_days": 8
@@ -11,7 +11,7 @@
   {
     "name": "100KG 1RM Benchpress ",
     "type": "Fitness",
-    "status": "active",
+    "status": "In progress",
     "progress": "80kg",
     "streak_days": 102
   }
