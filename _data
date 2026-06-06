@@ -37,6 +37,15 @@ def print_streaks(streaks):
     for streak in streaks:
         print(f"Name: {streak['name']}: {streak['streak_days']} days \nType: {streak['type']} \nStatus: {streak['status']} \nProgress {streak['progress']}")
 
+def user_choice(prompt, valid_choices):
+    
+    while True:
+        choice = input(prompt).strip().lower()
+        if choice in valid_choices:
+            return choice
+        else: 
+            print(f"Invalid choice! Choose from: {", ".join(valid_choices)}")
+
 
 
 print_character(profile)
