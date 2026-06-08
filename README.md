@@ -1,4 +1,1 @@
-# first-json-proj
-
-Goals:
-- learn json basics
+LEARNING PROJECT WITH HEAVY AI ASSISTANCE
