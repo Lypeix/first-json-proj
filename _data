@@ -91,20 +91,64 @@ def action():
         ["1", "2", "3", "4"]
     )
 
-        stat_map = {
-        "1": "strength",
-        "2": "stamina",
-        "3": "speed",
-        "4": "focus"
-    }
+        stat_names = {
+            "1": "Strength",
+            "2": "Stamina",
+            "3": "Speed",
+            "4": "Focus"
+            }
 
-        stat_name = stat_map[stat]
 
-        new_stat = input(f"New value for {stat_name}: ")
-        profile["stats"][stat_name] = int(new_stat)
+        stat_name = stat_names[stat]
 
-        print(f"{stat_name} has been updated to {new_stat}!")
+        while True:
+            new_stat = input(f"New value for {stat_name}: ")
+            
+            try: 
+                value = int(new_stat)
+            except ValueError:
+                print("New value must be a number!")
+                continue
+            
+            profile['stats'][stat] = value
+            print(f"{stat_name} has been updated to {value}!")
+            break
 
+    if section == "2":
+
+
+        today_task = user_choice("Which task would you like to update?"
+                            "\n1. Coding Practice"
+                            "\n2. Gym"
+                            "\n> ",
+                           ["1", "2"]
+                           )
+
+        task_keys = {
+            "1": "Coding Practice",
+            "2": "Gym"
+        }
+
+        task_key = task_keys[today_task]
+
+        if today_task == "1":
+            task_update = user_choice("What would you like to update?"
+                                "\n1. Task"
+                                "\n2. Duration"
+                                "\n3. Status"
+                                "\n> ",
+                                ["1", "2", "3"]
+                                )
+            
+            
+            if task_update == "1":
+                new_task = input(f"What do you wish to update {task_key} to?\n> ")                
+                print(f"{daily['tasks'][0]['name']} has been updated to {new_task}!")
+                daily['tasks'][0]['name'] = new_task
+                print(f"{daily['tasks'][0]['name']}")
+
+
+    return True
 
 
 def main():
