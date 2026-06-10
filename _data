@@ -131,7 +131,9 @@ def action():
 
         task_key = task_keys[today_task]
 
-        if today_task == "1":
+        task_index = 0 if today_task == "1" else 1
+
+        if today_task == "1" or "2":
             task_update = user_choice("What would you like to update?"
                                 "\n1. Task"
                                 "\n2. Duration"
@@ -141,12 +143,22 @@ def action():
                                 )
             
             
-            if task_update == "1":
-                new_task = input(f"What do you wish to update {task_key} to?\n> ")                
-                print(f"{daily['tasks'][0]['name']} has been updated to {new_task}!")
-                daily['tasks'][0]['name'] = new_task
-                print(f"{daily['tasks'][0]['name']}")
 
+            if task_update == "1":
+                new_task = input(f"What shall {task_key} now become?\n> ")                
+                print(f"{daily['tasks'][task_index]['name']} has been updated to {new_task}!")
+                daily['tasks'][task_index]['name'] = new_task
+                print(f"{daily['tasks'][task_index]['name']}")
+
+            elif task_update == "2":
+                new_duration = input(f"What shall the new duration for {task_key} be?\n> ")
+                print(f"{daily['tasks'][task_index]['name']} duration has been updated to {new_duration} minutes!")
+                daily['tasks'][task_index]['duration'] = new_duration
+
+            else:
+                new_status = input(f"What shall the new status for {task_key} be?\n> ")
+                print(f"{daily['tasks'][task_index]['name']} status has been updated to {new_status}!")
+                daily['tasks'][task_index]['duration'] = new_status
 
     return True
 
