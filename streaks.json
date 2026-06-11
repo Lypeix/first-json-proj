@@ -1,17 +1,19 @@
-[
-  {
+{
+"goals": [
+    {
     "name": "Slay the Spire Platinum Journey Streak",
     "type": "Game",
     "status": "In progress",
     "progress": "A10",
     "daystreak": 8
-  },
+    },
   
-  {
+    {
     "name": "100KG 1RM Benchpress ",
     "type": "Fitness",
     "status": "In progress",
     "progress": "80kg",
     "daystreak": 102
-  }
-]
+    }
+  ]
+}
