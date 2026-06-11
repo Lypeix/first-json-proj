@@ -34,8 +34,8 @@ def print_tasks(daily):
     
 def print_streaks(streaks):
     print("\n-=-STREAKS-=-")
-    for streak in streaks:
-        print(f"Name: {streak['name']}: {streak['streak_days']} days \nType: {streak['type']} \nStatus: {streak['status']} \nProgress {streak['progress']}")
+    for streak in streaks['goals']:
+        print(f"Name: {streak['name']}: {streak['daystreak']} days \nType: {streak['type']} \nStatus: {streak['status']} \nProgress {streak['progress']}")
 
 def user_choice(prompt, valid_choices):
     
@@ -114,7 +114,7 @@ def action():
             print(f"{stat_name} has been updated to {value}!")
             break
 
-    if section == "2":
+    elif section == "2":
 
 
         today_task = user_choice("Which task would you like to update?"
@@ -159,6 +159,41 @@ def action():
                 new_status = input(f"What shall the new status for {task_key} be?\n> ")
                 print(f"{daily['tasks'][task_index]['name']} status has been updated to {new_status}!")
                 daily['tasks'][task_index]['duration'] = new_status
+
+    elif section == "3":
+        streak = user_choice("What would you like to update?"
+                                    "\n1. Slay the Spire Platinum Goal Streak"
+                                    "\n2. Gym 100kg Goal Streak"
+                                    "\n> ",
+                                    ["1", "2"]                                    
+                                    )
+
+        streak_keys = {
+            "1": "Slay the Spire Platinum Streak",
+            "2": "Gym 100kg Goal Streak"
+        }
+
+        streak_key = streak_keys[streak]
+        
+        streak_index = 1 if  streak == "1" else 0
+
+        streak_update = user_choice("Which section would you like to update?"
+                    "\n1. Name"
+                    "\n2. Type"
+                    "\n3. Progress"
+                    "\n4. Daystreak"
+                    "\n> ",
+                    ["1", "2", "3", "4"]
+                    )
+        
+        
+
+        if streak_update == "1":
+            new_streak = input(f"What should {streak_key} be changed to?\n> ")
+            print(f"{streak_key} has been updated to {new_streak}!")
+            streaks['goals'][streak_index]['name'] = new_streak   
+            print(f"{streaks['goals'][streak_index]['name']}")
+
 
     return True
 
