@@ -204,7 +204,7 @@ def action():
             streaks['goals'][streak_index]['progress'] = new_streak
             
         elif streak_update == "4":
-            new_streak = input(f"What should the {streak_key} progress be changed to?\n> ")
+            new_streak = input(f"What should the {streak_key} daystreak be changed to?\n> ")
             print(f"{streaks['goals'][streak_index]['daystreak']} has been updated to {new_streak}!")
             streaks['goals'][streak_index]['daystreak'] = new_streak
 
