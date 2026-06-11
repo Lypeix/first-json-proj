@@ -3,9 +3,8 @@
     "name": "Slay the Spire Platinum Journey Streak",
     "type": "Game",
     "status": "In progress",
-    "difficulty": 5,
     "progress": "A10",
-    "streak_days": 9
+    "daystreak": 8
   },
   
   {
@@ -13,6 +12,6 @@
     "type": "Fitness",
     "status": "In progress",
     "progress": "80kg",
-    "streak_days": 102
+    "daystreak": 102
   }
 ]
