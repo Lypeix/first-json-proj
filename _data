@@ -130,15 +130,15 @@ def action():
 
 
         today_task = user_choice("Which task would you like to update?"
-                            "\n1. Coding Practice"
-                            "\n2. Gym"
+                            f"\n1. {daily['tasks'][0]['name']}"
+                            f"\n2. {daily['tasks'][1]['name']}"
                             "\n> ",
                            ["1", "2"]
                            )
 
         task_keys = {
-            "1": "Coding Practice",
-            "2": "Gym"
+            "1": f"{daily['tasks'][0]['name']}",
+            "2": f"{daily['tasks'][0]['name']}"
         }
 
         task_key = task_keys[today_task]
@@ -174,15 +174,15 @@ def action():
 
     elif section == "3":
         streak = user_choice("What would you like to update?"
-                                    "\n1. Slay the Spire Platinum Goal Streak"
-                                    "\n2. Gym 100kg Goal Streak"
+                                    f"\n1. {streaks['goals'][0]['name']}"
+                                    f"\n2. {streaks['goals'][1]['name']}"
                                     "\n> ",
                                     ["1", "2"]                                    
                                     )
 
         streak_keys = {
-            "1": "Slay the Spire Platinum Streak",
-            "2": "Gym 100kg Goal Streak"
+            "1": f"{streaks['goals'][0]['name']}",
+            "2": f"{streaks['goals'][1]['name']}"
         }
 
         streak_key = streak_keys[streak]
@@ -236,7 +236,7 @@ def main():
     save(daily, "daily.json")
     save(profile, "profile.json")
     save(streaks, "streaks.json")
-    
+
     return True
 
 main()
