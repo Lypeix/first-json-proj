@@ -3,6 +3,7 @@ import os
 
 BASE_DIR = os.path.dirname(__file__)
 
+
 def load(file_name):
     path = os.path.join(BASE_DIR, file_name)
     try:
@@ -11,6 +12,14 @@ def load(file_name):
     except json.JSONDecodeError as e:
         print(f"JSON error in {file_name}: {e}")
         return None 
+    
+def save(data, file_name):
+    path = os.path.join(BASE_DIR, file_name)
+    try:    
+        with open(path, "w") as f:
+            return json.dump(data, f, indent=4)
+    except json.IOError as e:
+        print(f"Failed to load {file_name}: {e}!")
 
 profile = load("profile.json")
 daily = load("daily.json")
@@ -71,14 +80,15 @@ def action():
               )
 
         if character == "1":
-            name = input(f"Type in your new username!")
+            name = input(f"Type in your new username!\n> ")
             profile['name'] = name
-            print(f"Your name has been successfully changed to {profile['name']}!")
+            print(f"Your name has been successfully changed to {profile['name']}!")            
 
         if character == "2":
-            level = input(f"Type in your new level!")
+            level = input(f"Type in your new level!\n> ")
             profile['level'] = int(level)
             print(f"You are now at Lv. {profile['level']}!")
+
 
         if character == "3":
             stat = user_choice(
@@ -91,28 +101,30 @@ def action():
         ["1", "2", "3", "4"]
     )
 
-        stat_names = {
-            "1": "Strength",
-            "2": "Stamina",
-            "3": "Speed",
-            "4": "Focus"
-            }
+            stat_names = {
+                "1": "Strength",
+                "2": "Stamina",
+                "3": "Speed",
+                "4": "Focus"
+                }
 
 
-        stat_name = stat_names[stat]
+            stat_name = stat_names[stat]
 
-        while True:
-            new_stat = input(f"New value for {stat_name}: ")
-            
-            try: 
-                value = int(new_stat)
-            except ValueError:
-                print("New value must be a number!")
-                continue
-            
-            profile['stats'][stat] = value
-            print(f"{stat_name} has been updated to {value}!")
-            break
+            while True:
+                new_stat = input(f"New value for {stat_name}: ")
+                
+                try: 
+                    value = int(new_stat)
+                except ValueError:
+                    print("New value must be a number!")
+                    continue
+                
+                profile['stats'][stat] = value
+                print(f"{stat_name} has been updated to {value}!")
+                break
+
+    
 
     elif section == "2":
 
@@ -216,6 +228,7 @@ def main():
 
 
     if answer == "2":
+        print("You decide not to update anything...")
         return False
     else:
         action()
