@@ -18,7 +18,7 @@ def save(data, file_name):
     try:    
         with open(path, "w") as f:
             return json.dump(data, f, indent=4)
-    except json.IOError as e:
+    except IOError as e:
         print(f"Failed to load {file_name}: {e}!")
 
 profile = load("profile.json")
@@ -233,6 +233,10 @@ def main():
     else:
         action()
 
+    save(daily, "daily.json")
+    save(profile, "profile.json")
+    save(streaks, "streaks.json")
+    
     return True
 
 main()
