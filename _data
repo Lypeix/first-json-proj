@@ -16,10 +16,11 @@ def load(file_name):
 def save(data, file_name):
     path = os.path.join(BASE_DIR, file_name)
     try:    
-        with open(path, "w") as f:
-            return json.dump(data, f, indent=4)
-    except IOError as e:
-        print(f"Failed to load {file_name}: {e}!")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
+        return True
+    except (OSError, TypeError) as e:
+        raise RuntimeError("Save failed!") from e
 
 profile = load("profile.json")
 daily = load("daily.json")
@@ -70,6 +71,9 @@ def action():
 > """,
 ["1", "2", "3"])
     
+#SECTION ONEEEE!
+
+
     if section == "1":
         character = user_choice("Which value do you wish to update?"
               "\n1. Name"
@@ -120,11 +124,11 @@ def action():
                     print("New value must be a number!")
                     continue
                 
-                profile['stats'][stat] = value
+                profile['stats'][stat_name] = value
                 print(f"{stat_name} has been updated to {value}!")
                 break
 
-    
+#SECTION TWOOO!
 
     elif section == "2":
 
@@ -138,15 +142,14 @@ def action():
 
         task_keys = {
             "1": f"{daily['tasks'][0]['name']}",
-            "2": f"{daily['tasks'][0]['name']}"
+            "2": f"{daily['tasks'][1]['name']}"
         }
 
         task_key = task_keys[today_task]
 
         task_index = 0 if today_task == "1" else 1
 
-        if today_task == "1" or "2":
-            task_update = user_choice("What would you like to update?"
+        task_update = user_choice("What would you like to update?"
                                 "\n1. Task"
                                 "\n2. Duration"
                                 "\n3. Status"
@@ -156,21 +159,31 @@ def action():
             
             
 
-            if task_update == "1":
-                new_task = input(f"What shall {task_key} now become?\n> ")                
-                print(f"{daily['tasks'][task_index]['name']} has been updated to {new_task}!")
-                daily['tasks'][task_index]['name'] = new_task
-                print(f"{daily['tasks'][task_index]['name']}")
+        if task_update == "1":
+                    
+                    new_task = input(f"What shall {task_key} now become?\n> ")                
+                    print(f"{daily['tasks'][task_index]['name']} has been updated to {new_task}!")
+                    daily['tasks'][task_index]['name'] = new_task
+                    print(f"{daily['tasks'][task_index]['name']}")
 
-            elif task_update == "2":
-                new_duration = input(f"What shall the new duration for {task_key} be?\n> ")
-                print(f"{daily['tasks'][task_index]['name']} duration has been updated to {new_duration} minutes!")
-                daily['tasks'][task_index]['duration'] = new_duration
+        elif task_update == "2":
+                    
+                    new_duration = input(f"What shall the new duration for {task_key} be?\n> ")
+                    print(f"{daily['tasks'][task_index]['name']} duration has been updated to {new_duration} minutes!")
+                    daily['tasks'][task_index]['duration'] = new_duration
 
-            else:
-                new_status = input(f"What shall the new status for {task_key} be?\n> ")
-                print(f"{daily['tasks'][task_index]['name']} status has been updated to {new_status}!")
-                daily['tasks'][task_index]['duration'] = new_status
+        else:
+                    new_status = user_choice(f"Register {task_key} as completed?  (Y/N) \n> ",
+                                            ['y', 'n']
+                                            )
+                    if new_status == 'y':                
+                        print(f"{daily['tasks'][task_index]['name']} status has been set to Completed!")
+                        daily['tasks'][task_index]['completed'] = True
+                    else:
+                        print(f"{daily['tasks'][task_index]['name']} status has been set to Not Completed!")
+                        daily['tasks'][task_index]['completed'] = False
+
+#SECTION THREEEEE!
 
     elif section == "3":
         streak = user_choice("What would you like to update?"
@@ -187,7 +200,7 @@ def action():
 
         streak_key = streak_keys[streak]
         
-        streak_index = 1 if  streak == "1" else 0
+        streak_index = 0 if  streak == "1" else 1
 
         streak_update = user_choice("Which section would you like to update?"
                     "\n1. Name"
@@ -222,6 +235,7 @@ def action():
 
     return True
 
+#Amen.
 
 def main():
     answer = user_choice("Would you like to update anything?\n1. Yes \n2. No\n> ", ["1", "2"])
